@@ -49,3 +49,10 @@ export function getDayOfWeek(day: number): string {
   const days = ['вск.', 'пнд.', 'вт.', 'ср.', 'чтв.', 'птц.', 'сб.'];
   return days[day];
 }
+
+export function getCurrentTime(date: Ref): string {
+  const hour = date.getHours().toString().padStart(2, 0),
+    minutes = date.getMinutes().toString().padStart(2, 0),
+    seconds = date.getSeconds().toString().padStart(2, 0);
+  return `${hour}:${minutes}:${seconds}`;
+}
