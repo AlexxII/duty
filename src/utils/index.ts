@@ -19,6 +19,17 @@ export function getPhone(phone: string[]): string[] {
   }
 }
 
+export function getPhoneStr(phone: string[]): string {
+  if (phone == null) {
+    return '-';
+  }
+  if (phone.length > 2) {
+    return `${phone[0]}, ${phone[1]}, ...`;
+  } else {
+    return `${phone[0]}`;
+  }
+}
+
 export function getMobilePhone(phone: string[]): string {
   if (phone == null) {
     return "-";
@@ -48,6 +59,11 @@ export function uuidv4(): string {
 export function getDayOfWeek(day: number): string {
   const days = ['вск.', 'пнд.', 'вт.', 'ср.', 'чтв.', 'птц.', 'сб.'];
   return days[day];
+}
+
+export function getMonths(num: number): string {
+  const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  return months[num];
 }
 
 export function getCurrentTime(date: Ref): string {

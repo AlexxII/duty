@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { fireProcedure } from '../data/fireProcedure.ts';
-import { uuidv4, getCurrentTime } from '../utils/index.ts';
+import { uuidv4, getMobilePhone, getPhoneStr, getCurrentTime } from '../utils/index.ts';
+import { people } from '../data/index.ts';
 import Stepper from '../components/Stepper.vue';
 import TimeLine from '../components/TimeLine.vue';
+import FireTeam from '../components/FireTeam.vue';
 
 const initEvent = {
   id: uuidv4(),
@@ -12,10 +14,21 @@ const initEvent = {
 }
 
 const stepsData = ref(setPropsData());
+const fireTeamData = ref(setFireTeamData())
 const step = ref(1);
 const eventsPool = ref([
   initEvent
 ]);
+
+function setFireTeamData() {
+  return people.map(item => ({
+    surname: item.lastName,
+    name: `${item.firstName[0]}.${item.patronymic[0]}.`,
+    unit: item.unit,
+    workPhone: getPhoneStr(item.atsOgvPhone),
+    mobilePhone: getMobilePhone(item.mobilePhone)
+  }));
+}
 
 function setPropsData() {
   return fireProcedure.map((item) => {
@@ -45,10 +58,10 @@ function doneThis(id: string, flag: boolean): void {
       time: getCurrentTime(new Date),
       title
     })
+    step.value += 1;
   } else {
     eventsPool.value = eventsPool.value.filter(item => item.id != id)
   }
-  step.value += 1;
 };
 
 function updateStep(flag: boolean) {
@@ -69,4 +82,5 @@ function updateStep(flag: boolean) {
       <TimeLine :events='eventsPool' />
     </div>
   </div>
+  <FireTeam :fireTeam="fireTeamData" />
 </template>

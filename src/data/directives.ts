@@ -28,38 +28,44 @@ export const directives: Directive[] = [
   },
   {
     id: uuidv4(),
-    title: "Эдельвейс",
+    title: "Воздух",
     order: 5,
     url: 'edelweiss'
   },
   {
     id: uuidv4(),
-    title: "Срабатывание ТСО",
+    title: "Эдельвейс",
     order: 6,
+    url: 'edelweiss'
+  },
+  {
+    id: uuidv4(),
+    title: "Срабатывание ТСО",
+    order: 7,
     url: 'tso'
   },
   {
     id: uuidv4(),
     title: "Сполохи",
-    order: 7,
+    order: 8,
     url: 'flashes'
   },
   {
     id: uuidv4(),
     title: "Дежурная служба",
-    order: 8,
+    order: 9,
     url: 'duty_service'
   },
   {
     id: uuidv4(),
     title: "Пропускной режим",
-    order: 9,
+    order: 10,
     url: 'access_mode'
   },
   {
     id: uuidv4(),
     title: "Парольные сигналы",
-    order: 10,
+    order: 11,
     url: 'siganls'
   },
 ]

@@ -47,3 +47,27 @@ export interface Directive {
   order: number,
   url: string,
 }
+
+export interface DocumentationTree {
+  id: string,
+  label: string,
+  root?: boolean,
+  icon?: string,
+  disabled?: boolean,
+  handler?: Function,
+  selectable?: boolean,
+  children?: DocumentationTree[]
+}
+
+enum CiperCarrierType {
+  dk = 'К1634ДК6',
+  rik = "РИК-2",
+  cd = "CD"
+}
+
+export interface CiperCarrier {
+  id: string,
+  label: string,                                        // наименование носителя
+  serialNumber: number,                                 // заводской номер
+  type: CiperCarrierType,                               // тип
+}

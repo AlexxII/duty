@@ -12,7 +12,7 @@ export * from './fireProcedure';
 //  { name: "Русанова Татьяна Олеговна", tel: "22-10" },
 //];
 
-const people: People[] = [
+export const people: People[] = [
   {
     id: "d8afa90b-42d9-4ee5-8062-7d6082559d8c",
     lastName: "Аверьянов",
@@ -45,7 +45,7 @@ const people: People[] = [
   },
   {
     id: "ba3821a4-d9de-48cb-b834-b59e48b0dc8f",
-    lastName: "Павлов",
+    lastName: "Христорождественский",
     firstName: "Степан",
     patronymic: "Викторович",
     birthday: new Date("05-02-1988"),
@@ -79,7 +79,7 @@ const people: People[] = [
     firstName: "Юлия",
     patronymic: "Викторовна",
     birthday: new Date("14-02-1983"),
-    unit: "88888888 отделение",
+    unit: "8 отделение",
     position: "сотрудник отделения",
     rank: null,
     atsOgvPhone: ["22-57"],
@@ -88,5 +88,4 @@ const people: People[] = [
     homePhone: ["65-12-74"],
     residence: ["г.Мурманск, ул.Лобова, 56, 112"]
   },
-]
-export default people;
+];

@@ -13,7 +13,7 @@ const text = ref("");
   <div class="main-wrapper">
     <ToolBar class="main-toolbar" />
     <Contacts class="contacts" />
-    <BreadCrumbs class="bread"/>
+    <BreadCrumbs class="bread" />
     <CommonInfo class="common-info" />
     <StaffRate class="staff-rate" />
 

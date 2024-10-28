@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
-import people from '../data/index.ts';
+import { people } from '../data/index.ts';
 import { getName, getPhone, getMobilePhone, isEmpty } from '../utils/index.ts';
 
 const peoples = people.map(item => {

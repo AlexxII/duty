@@ -18,10 +18,10 @@ function hasRouteBack() {
 
       <q-toolbar-title>Дежурная служба</q-toolbar-title>
 
-      <q-btn stretch flat label="Документация" />
+      <q-btn :to="{ name: 'docs' }" stretch flat label="Документация" />
       <q-separator dark vertical />
-      <q-btn stretch flat label="TODO" />
-      <q-btn flat round icon="settings" />
+      <q-btn :to="{ name: 'todo' }" stretch flat label="TODO" />
+      <q-btn :to="{ name: 'mainConfig' }" flat round icon="settings" />
       <q-btn flat round icon="notifications">
         <q-badge floating color="red">2</q-badge>
       </q-btn>
