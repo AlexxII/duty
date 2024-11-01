@@ -22,7 +22,7 @@ export const directives: Directive[] = [
   },
   {
     id: uuidv4(),
-    title: "Разбер",
+    title: "Разбег",
     order: 4,
     url: 'assembly'
   },
