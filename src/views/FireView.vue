@@ -20,6 +20,7 @@ const eventsPool = ref([
   initEvent
 ]);
 
+// инициализация данных
 function setFireTeamData() {
   return people.map(item => ({
     surname: item.lastName,
@@ -30,12 +31,18 @@ function setFireTeamData() {
   }));
 }
 
+// инициализация данных
 function setPropsData() {
   return fireProcedure.map((item) => {
     return {
       id: uuidv4(),
       ...item,
-      done: false
+      checkPool: item.check ? item.check.reduce((acum, item) => {
+        acum.push(item.value)
+        return acum
+      }, []) : [],
+      done: false,
+      doneCheck: item.check ? false : true
     }
   })
 };
@@ -72,11 +79,25 @@ function updateStep(flag: boolean) {
   }
 }
 
+function updateChecks(id, value) {
+  stepsData.value = stepsData.value.map(step => {
+    if (step.id === id) {
+      return {
+        ...step,
+        doneCheck: value
+      }
+    } else {
+      return step
+    }
+  })
+}
+
 </script>
 <template>
   <div class="row">
     <div class="col-9">
-      <Stepper @update-step="updateStep" @step-handler="doneThis" v-model="step" :steps="stepsData" />
+      <Stepper @update-step="updateStep" @step-handler="doneThis" @checkbox-update="updateChecks" v-model="step"
+        :steps="stepsData" />
     </div>
     <div class="col-3">
       <TimeLine :events='eventsPool' />

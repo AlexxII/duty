@@ -16,7 +16,9 @@ function hasRouteBack() {
         <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
       </q-avatar>
 
-      <q-toolbar-title>Дежурная служба</q-toolbar-title>
+      <q-toolbar-title>
+        <router-link id="logo" to="/">Дежурная служба</router-link>
+      </q-toolbar-title>
 
       <q-btn :to="{ name: 'docs' }" stretch flat label="Документация" />
       <q-separator dark vertical />
@@ -28,3 +30,9 @@ function hasRouteBack() {
     </q-toolbar>
   </div>
 </template>
+<style scoped>
+a#logo {
+  text-decoration: none;
+  color: #fff;
+}
+</style>

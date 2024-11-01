@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, defineModel, computed, defineProps, defineEmits } from 'vue'
 const props = defineProps(['steps', 'step'])
-const emit = defineEmits(['stepHandler', 'updateStep'])
+const emit = defineEmits(['stepHandler', 'updateStep', 'checkboxUpdate'])
 const anim = ref(true);
 
 const stepp = defineModel();
@@ -25,16 +25,23 @@ function go_back() {
   }
 }
 
+// проверка все ли checkbox выполнены
+function checkDone(step) {
+  for (let item of step.checkPool) {
+    if (group.value.includes(item)) {
+      continue;
+    }
+    return false;
+  }
+  return true;
+}
 
-
-function handleCheck(val, id) {
+function handleCheck(val, step) {
   group.value = val;
-  console.log(val);
-  console.log(id);
+  emit('checkboxUpdate', step.id, checkDone(step));
 }
 
 const checkCompleteEnable = computed(() => {
-  console.log('1');
   return true
 })
 
@@ -54,11 +61,13 @@ function startSession() {
 <template>
   <div class="q-pa-md">
     <q-stepper v-model="stepp" vertical color="primary" header-nav :animated=anim>
+      <!--
       <div class="row q-px-md q-pb-md q-gutter-sm justify-end">
         <div class="row" style="align-items: center">Процент выполнения</div>
-        <q-btn outline color="secondary" label="Start" @click="startSession"/>
+        <q-btn outline color="secondary" label="Start" @click="startSession" />
         <q-btn outline color="negative" label="Restart" />
       </div>
+      -->
       <q-step :ripple="false" v-for="step of props.steps" :key="step.id" :prefix="step.name" :title="step.title"
         :name="step.name" :done="step.done" class="big-text">
         <div class="q-py-sm">
@@ -75,12 +84,12 @@ function startSession() {
         <q-separator />
 
         <div class="q-pt-sm" v-if="step.check">
-          <q-option-group :options="step.check" type="checkbox" :modelValue="group"
-            @update:modelValue="(val) => handleCheck(val, step.id)" />
+          <q-option-group :options="step.check" type="checkbox" :key="step.id" :modelValue="group"
+            @update:modelValue="(val) => handleCheck(val, step)" />
         </div>
 
         <q-stepper-navigation class="q-gutter-sm">
-          <q-btn v-if="!step.done && stepp < max_step" :disable="checkCompleteEnable" @click="clickDone(step.id, true)"
+          <q-btn v-if="!step.done && stepp < max_step" :disable="!step.doneCheck" @click="clickDone(step.id, true)"
             color="secondary" label="Сделано" />
 
           <q-btn v-else-if="stepp < max_step" @click="clickDone(step.id, false)" color="negative" label="Отмена" />
