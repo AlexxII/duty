@@ -2,6 +2,7 @@
 import { ref, computed, watch } from 'vue'
 import { people } from '../data/index.ts';
 import { getName, getPhone, getMobilePhone, isEmpty } from '../utils/index.ts';
+import AddContactDialog from '../components/AddContactDialog.vue';
 
 const peoples = people.map(item => {
   return {
@@ -14,6 +15,8 @@ const peoples = people.map(item => {
   }
 })
 
+const dialog = ref(false);
+const telnumber = ref(null);
 const model = ref(peoples);
 const selectedContacts = ref([]);
 const showDetails = ref(false);
@@ -54,6 +57,12 @@ watch(selectedContacts, () => {
   }
 })
 
+function addNewContact(value) {
+  dialog.value = true;
+  telnumber.value = value;
+  console.log(value)
+}
+
 function clearAll() {
   selectedContacts.value = [];
 }
@@ -66,6 +75,7 @@ function handleRemove(item) {
 
 <template>
   <div class="q-pa-md">
+    <AddContactDialog :telnum="telnumber" v-model="dialog" />
     <q-select outlined :clearable="false" v-model="selectedContacts" multiple use-input fill-input :options="model"
       use-chips label="Контакты" @filter="filterFn" hint="" input-debounce="0" @clear="clearAll">
 
@@ -120,10 +130,13 @@ function handleRemove(item) {
         </q-chip>
       </template>
 
-      <template v-slot:no-option>
+      <template v-slot:no-option="scope">
         <q-item>
           <q-item-section class="text-grey">
             Нет данных
+            <span>
+              <q-btn size="sm" @click="addNewContact(scope.inputValue)" outlined color="secondary">Добавить</q-btn>
+            </span>
           </q-item-section>
         </q-item>
       </template>

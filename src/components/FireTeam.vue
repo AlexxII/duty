@@ -3,14 +3,21 @@ import { ref, defineProps } from 'vue'
 
 const props = defineProps(["fireTeam"]);
 
+function editeFireTeam() {
+  console.log('Fire team editing');
+}
+
 </script>
 
 <template>
-  <div class="q-pl-md text-h6 col-12">Нештатный пожарный расчет</div>
+  <div class="q-pl-md text-h6 col-12">
+    Нештатный пожарный расчет
+    <q-badge class="click-me" @click="editeFireTeam" outline color="orange" align="top">Править</q-badge>
+  </div>
   <div class="q-pa-md row q-gutter-md fireman-card justify-between">
     <q-card v-for="fireman of props.fireTeam" class="col-xs-9 col-sm-4 col-md-3 col-lg-2 my-card">
       <q-card-section>
-        <div class="fireman-header text-h6">{{ fireman.surname }} {{fireman.name}}</div>
+        <div class="fireman-header text-h6">{{ fireman.surname }} {{ fireman.name }}</div>
         <div class="text-subtitle2">{{ fireman.unit }}</div>
         <div class="text">{{ fireman.workPhone }}</div>
         <div class="text">{{ fireman.mobilePhone }}</div>
@@ -31,5 +38,9 @@ const props = defineProps(["fireTeam"]);
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: clamp(12px, 2.5vw, 1.2rem);
+}
+
+.click-me:hover {
+  cursor: pointer;
 }
 </style>
