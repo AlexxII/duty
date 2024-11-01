@@ -13,7 +13,7 @@ function hasRouteBack() {
     <q-toolbar class="bg-primary glossy text-white">
       <!--<q-btn flat round dense icon="menu" class="q-mr-sm" /> -->
       <q-avatar>
-        <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+        <img src="../../public/duty.png">
       </q-avatar>
 
       <q-toolbar-title>
